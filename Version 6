@@ -1,0 +1,56 @@
+import random
+
+magic_number = random.randrange(1, 101)
+# print(magic_number)
+
+
+
+runner = True
+num_played = 0
+num_won = 0
+
+while runner:
+    print("==SCOREBOARD==")
+    print(f"Games Played: {num_played}")
+    print(f"Games Won: {num_won}")
+    if num_played == 0:
+        percentage = 0
+    else:
+        percentage = (num_won/num_played) * 100
+    print(f"Percentage Won: {percentage}%")
+    print()
+
+    running = True
+    max_guesses = 10
+    guess_count = 0
+    previous_guesses = []
+
+    
+    while running is True:
+        user_number = int(input("Please enter a number: "))
+        guess_count += 1
+        previous_guesses.append(user_number)
+    
+        if user_number == magic_number:
+            print("You Have Won!")
+            num_won += 1
+            running = False
+        else:
+          if user_number>magic_number:
+            print("Your guess is too high")
+          else:
+            print("Your guess is too low")
+            print("Your previous guesses: ", previous_guesses)
+    
+            if guess_count >= max_guesses:
+                print("Game has ended. You have used all of your attempts.")
+                running = False  
+    num_played += 1
+    runner = input("Would you like to play again (y/n)? ")
+    if runner == "y":
+        runner = True
+    elif runner == "n":
+        runner = False
+    else:
+        print("Invalid entry. Exiting.")
+        break
